@@ -1,0 +1,228 @@
+import { useState } from 'react';
+import { ExternalLink, Clock, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
+import Layout from '@/components/layout/Layout';
+import { useStaggeredAnimation } from '@/hooks/useScrollAnimation';
+
+type AppStatus = 'production' | 'development' | 'planning';
+
+interface AppItem {
+  name: string;
+  description: {
+    es: string;
+    en: string;
+  };
+  status: AppStatus;
+  url?: string;
+}
+
+const applications: AppItem[] = [
+  {
+    name: 'Glamtica',
+    description: {
+      es: 'ERP para estéticas, salones de belleza, peluquerías y barberías',
+      en: 'ERP for beauty salons, hair salons, and barbershops',
+    },
+    status: 'production',
+    url: 'https://glamtica.app',
+  },
+  {
+    name: 'TattooSuite',
+    description: {
+      es: 'ERP para estudios de tatuajes y perforaciones',
+      en: 'ERP for tattoo and piercing studios',
+    },
+    status: 'production',
+    url: 'https://tattoosuite.app',
+  },
+  {
+    name: 'Autopartia',
+    description: {
+      es: 'ERP para el sector autopartista desde importadoras hasta talleres',
+      en: 'ERP for the auto parts sector from importers to workshops',
+    },
+    status: 'development',
+  },
+  {
+    name: 'Odontología',
+    description: {
+      es: 'ERP con RIPS para consultorios odontológicos',
+      en: 'ERP with RIPS for dental offices',
+    },
+    status: 'planning',
+  },
+  {
+    name: 'VeteZooft',
+    description: {
+      es: 'ERP para veterinarias',
+      en: 'ERP for veterinary clinics',
+    },
+    status: 'planning',
+  },
+  {
+    name: 'Facil ERP',
+    description: {
+      es: 'ERP genérico para todo tipo de negocio',
+      en: 'Generic ERP for all types of businesses',
+    },
+    status: 'planning',
+  },
+  {
+    name: 'Report Labs',
+    description: {
+      es: 'Sistema de reportes personalizados para empresas',
+      en: 'Custom reporting system for companies',
+    },
+    status: 'planning',
+  },
+  {
+    name: 'Documenta',
+    description: {
+      es: 'Sistema de gestión documental',
+      en: 'Document management system',
+    },
+    status: 'planning',
+  },
+  {
+    name: 'Conéctate',
+    description: {
+      es: 'Sistema de comunicaciones para colegios',
+      en: 'Communication system for schools',
+    },
+    status: 'planning',
+  },
+  {
+    name: 'Gestion.app',
+    description: {
+      es: 'Sistema para controlar dotaciones, certificados, cursos, firmas de empleados y más',
+      en: 'System to manage uniforms, certificates, courses, employee signatures, and more',
+    },
+    status: 'planning',
+  },
+];
+
+const statusColors: Record<AppStatus, string> = {
+  production: 'bg-green-500/10 text-green-600 border-green-500/20',
+  development: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
+  planning: 'bg-primary/10 text-primary border-primary/20',
+};
+
+const Applications = () => {
+  const { t, language } = useLanguage();
+  const [filter, setFilter] = useState<AppStatus | 'all'>('all');
+
+  const filteredApps = applications.filter(
+    (app) => filter === 'all' || app.status === filter
+  );
+
+  const { containerRef, visibleItems } = useStaggeredAnimation(filteredApps.length, 100);
+
+  const filters: { key: AppStatus | 'all'; label: string }[] = [
+    { key: 'all', label: t('apps.filter.all') },
+    { key: 'production', label: t('apps.filter.production') },
+    { key: 'development', label: t('apps.filter.development') },
+    { key: 'planning', label: t('apps.filter.planning') },
+  ];
+
+  return (
+    <Layout>
+      {/* Hero */}
+      <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 opacity-0 animate-fade-in">
+              {t('apps.title')}
+            </h1>
+            <p className="text-lg text-muted-foreground opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              {t('apps.subtitle')}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Filters */}
+      <section className="py-8 border-b border-border sticky top-16 md:top-20 bg-background/80 backdrop-blur-xl z-40">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-2">
+            {filters.map((f) => (
+              <Button
+                key={f.key}
+                variant={filter === f.key ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setFilter(f.key)}
+                className={`transition-all duration-300 ${
+                  filter === f.key ? 'gradient-bg shadow-lg' : ''
+                }`}
+              >
+                {f.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Applications Grid */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div
+            ref={containerRef as React.RefObject<HTMLDivElement>}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {filteredApps.map((app, index) => (
+              <div
+                key={app.name}
+                className={`glass-card rounded-xl p-6 flex flex-col hover-lift transition-all duration-500 group ${
+                  visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors">
+                    {app.name}
+                  </h3>
+                  <Badge
+                    variant="outline"
+                    className={`${statusColors[app.status]} text-xs`}
+                  >
+                    {app.status === 'production' && t('apps.status.production')}
+                    {app.status === 'development' && t('apps.status.development')}
+                    {app.status === 'planning' && t('apps.status.planning')}
+                  </Badge>
+                </div>
+                <p className="text-muted-foreground text-sm flex-grow mb-6">
+                  {app.description[language]}
+                </p>
+                <div className="mt-auto">
+                  {app.status === 'production' && app.url ? (
+                    <Button
+                      asChild
+                      className="w-full gradient-bg text-secondary-foreground hover:opacity-90 transition-all"
+                    >
+                      <a href={app.url} target="_blank" rel="noopener noreferrer">
+                        {t('apps.cta.visit')}
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  ) : app.status === 'development' ? (
+                    <Button disabled variant="outline" className="w-full">
+                      <Clock className="mr-2 h-4 w-4" />
+                      {t('apps.status.development')}
+                    </Button>
+                  ) : (
+                    <Button disabled variant="outline" className="w-full">
+                      <Sparkles className="mr-2 h-4 w-4" />
+                      {t('apps.cta.soon')}
+                    </Button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default Applications;
