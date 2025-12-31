@@ -25,21 +25,19 @@ export const useScrollAnimation = (threshold = 0.1) => {
   return { ref, isVisible };
 };
 
-export const useStaggeredAnimation = (itemCount: number, delay = 100, resetKey?: string) => {
-  const [visibleItems, setVisibleItems] = useState<boolean[]>(
-    new Array(itemCount).fill(false)
-  );
+export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
+  const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
   const containerRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
-  // Reset when itemCount or resetKey changes
   useEffect(() => {
-    setVisibleItems(new Array(itemCount).fill(false));
-    hasAnimated.current = false;
-  }, [itemCount, resetKey]);
+    // Initialize array with correct size
+    if (visibleItems.length !== itemCount) {
+      setVisibleItems(new Array(itemCount).fill(false));
+      hasAnimated.current = false;
+    }
 
-  useEffect(() => {
-    if (hasAnimated.current) return;
+    if (hasAnimated.current || itemCount === 0) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -50,7 +48,9 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100, resetKey?:
             if (index < itemCount) {
               setVisibleItems((prev) => {
                 const newState = [...prev];
-                newState[index] = true;
+                if (index < newState.length) {
+                  newState[index] = true;
+                }
                 return newState;
               });
               index++;
@@ -58,7 +58,6 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100, resetKey?:
               clearInterval(interval);
             }
           }, delay);
-          observer.disconnect();
         }
       },
       { threshold: 0.1 }
@@ -69,7 +68,7 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100, resetKey?:
     }
 
     return () => observer.disconnect();
-  }, [itemCount, delay, resetKey]);
+  }, [itemCount, delay, visibleItems.length]);
 
   return { containerRef, visibleItems };
 };

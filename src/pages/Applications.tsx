@@ -117,9 +117,7 @@ const Applications = () => {
     (app) => filter === 'all' || app.status === filter
   );
 
-  // Reset animation when filter changes by using a unique key
-  const filterKey = `${filter}-${filteredApps.length}`;
-  const { containerRef, visibleItems } = useStaggeredAnimation(filteredApps.length, 100, filterKey);
+  const { containerRef, visibleItems } = useStaggeredAnimation(filteredApps.length, 100);
 
   const filters: { key: AppStatus | 'all'; label: string }[] = [
     { key: 'all', label: t('apps.filter.all') },
