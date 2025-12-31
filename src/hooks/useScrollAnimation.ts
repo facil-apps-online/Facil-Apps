@@ -32,15 +32,15 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
   const containerRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
-  // Keep state in sync when the list size changes (e.g., filtering)
   useEffect(() => {
-    setVisibleItems(new Array(itemCount).fill(false));
-    hasAnimated.current = false;
-  }, [itemCount]);
+    // Keep state in sync when the list size changes (e.g., filtering)
+    if (visibleItems.length !== itemCount) {
+      setVisibleItems(new Array(itemCount).fill(false));
+      hasAnimated.current = false;
+      return;
+    }
 
-  useEffect(() => {
     if (hasAnimated.current || itemCount === 0) return;
-    if (visibleItems.length !== itemCount) return;
 
     const el = containerRef.current;
     if (!el) return;
