@@ -26,48 +26,68 @@ export const useScrollAnimation = (threshold = 0.1) => {
 };
 
 export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
-  const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
+  const [visibleItems, setVisibleItems] = useState<boolean[]>(() =>
+    new Array(itemCount).fill(false)
+  );
   const containerRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
 
+  // Keep state in sync when the list size changes (e.g., filtering)
   useEffect(() => {
-    // Initialize array with correct size
-    if (visibleItems.length !== itemCount) {
-      setVisibleItems(new Array(itemCount).fill(false));
-      hasAnimated.current = false;
-    }
+    setVisibleItems(new Array(itemCount).fill(false));
+    hasAnimated.current = false;
+  }, [itemCount]);
 
+  useEffect(() => {
     if (hasAnimated.current || itemCount === 0) return;
+    if (visibleItems.length !== itemCount) return;
+
+    const el = containerRef.current;
+    if (!el) return;
+
+    let interval: ReturnType<typeof setInterval> | undefined;
+    let revealFallback: ReturnType<typeof setTimeout> | undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          let index = 0;
-          const interval = setInterval(() => {
-            if (index < itemCount) {
-              setVisibleItems((prev) => {
-                const newState = [...prev];
-                if (index < newState.length) {
-                  newState[index] = true;
-                }
-                return newState;
-              });
-              index++;
-            } else {
-              clearInterval(interval);
-            }
-          }, delay);
-        }
+        if (!entry.isIntersecting || hasAnimated.current) return;
+
+        hasAnimated.current = true;
+        observer.disconnect();
+
+        let index = 0;
+        interval = setInterval(() => {
+          if (index < itemCount) {
+            setVisibleItems((prev) => {
+              if (index >= prev.length) return prev;
+              const next = [...prev];
+              next[index] = true;
+              return next;
+            });
+            index++;
+          } else if (interval) {
+            clearInterval(interval);
+          }
+        }, delay);
       },
       { threshold: 0.1 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    observer.observe(el);
 
-    return () => observer.disconnect();
+    // Fallback: if the observer never fires (some layouts/browsers), reveal anyway.
+    revealFallback = setTimeout(() => {
+      if (hasAnimated.current) return;
+      hasAnimated.current = true;
+      setVisibleItems(new Array(itemCount).fill(true));
+      observer.disconnect();
+    }, 600);
+
+    return () => {
+      if (interval) clearInterval(interval);
+      if (revealFallback) clearTimeout(revealFallback);
+      observer.disconnect();
+    };
   }, [itemCount, delay, visibleItems.length]);
 
   return { containerRef, visibleItems };
