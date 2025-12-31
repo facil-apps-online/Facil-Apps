@@ -25,16 +25,26 @@ export const useScrollAnimation = (threshold = 0.1) => {
   return { ref, isVisible };
 };
 
-export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
+export const useStaggeredAnimation = (itemCount: number, delay = 100, resetKey?: string) => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>(
     new Array(itemCount).fill(false)
   );
   const containerRef = useRef<HTMLElement>(null);
+  const hasAnimated = useRef(false);
+
+  // Reset when itemCount or resetKey changes
+  useEffect(() => {
+    setVisibleItems(new Array(itemCount).fill(false));
+    hasAnimated.current = false;
+  }, [itemCount, resetKey]);
 
   useEffect(() => {
+    if (hasAnimated.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
           let index = 0;
           const interval = setInterval(() => {
             if (index < itemCount) {
@@ -59,7 +69,7 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
     }
 
     return () => observer.disconnect();
-  }, [itemCount, delay]);
+  }, [itemCount, delay, resetKey]);
 
   return { containerRef, visibleItems };
 };
