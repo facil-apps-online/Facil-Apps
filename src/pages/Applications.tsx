@@ -3,8 +3,6 @@ import {
   ExternalLink, 
   Clock, 
   Sparkles, 
-  Scissors, 
-  Pen, 
   Car, 
   Stethoscope, 
   PawPrint, 
@@ -20,6 +18,9 @@ import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 
+import logoGlamtica from '@/assets/logo-glamtica.png';
+import logoTattoosuite from '@/assets/logo-tattoosuite.png';
+
 type AppStatus = 'production' | 'development' | 'planning';
 
 interface AppItem {
@@ -30,7 +31,8 @@ interface AppItem {
   };
   status: AppStatus;
   url?: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  logo?: string;
 }
 
 const applications: AppItem[] = [
@@ -42,7 +44,7 @@ const applications: AppItem[] = [
     },
     status: 'production',
     url: 'https://glamtica.app',
-    icon: Scissors,
+    logo: logoGlamtica,
   },
   {
     name: 'TattooSuite',
@@ -52,7 +54,7 @@ const applications: AppItem[] = [
     },
     status: 'production',
     url: 'https://tattoosuite.app',
-    icon: Pen,
+    logo: logoTattoosuite,
   },
   {
     name: 'Autopartia',
@@ -197,12 +199,21 @@ const Applications = () => {
                 style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="flex items-start gap-3 mb-4">
-                  <div 
-                    className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"
-                    aria-hidden="true"
-                  >
-                    <app.icon className="w-5 h-5 text-primary" />
-                  </div>
+                  {app.logo ? (
+                    <img 
+                      src={app.logo} 
+                      alt={`Logo de ${app.name}`}
+                      loading="lazy"
+                      className="w-10 h-10 rounded-lg object-cover flex-shrink-0"
+                    />
+                  ) : app.icon ? (
+                    <div 
+                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"
+                      aria-hidden="true"
+                    >
+                      <app.icon className="w-5 h-5 text-primary" />
+                    </div>
+                  ) : null}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors truncate">
