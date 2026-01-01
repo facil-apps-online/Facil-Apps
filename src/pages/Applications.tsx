@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
-import { useStaggeredAnimation } from '@/hooks/useScrollAnimation';
 
 type AppStatus = 'production' | 'development' | 'planning';
 
@@ -117,8 +116,6 @@ const Applications = () => {
     (app) => filter === 'all' || app.status === filter
   );
 
-  const { containerRef, visibleItems } = useStaggeredAnimation(filteredApps.length, 100);
-
   const filters: { key: AppStatus | 'all'; label: string }[] = [
     { key: 'all', label: t('apps.filter.all') },
     { key: 'production', label: t('apps.filter.production') },
@@ -166,16 +163,12 @@ const Applications = () => {
       {/* Applications Grid */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div
-            ref={containerRef as React.RefObject<HTMLDivElement>}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredApps.map((app, index) => (
               <div
-                key={app.name}
-                className={`glass-card rounded-xl p-6 flex flex-col hover-lift transition-all duration-500 group ${
-                  visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
+                key={`${filter}-${app.name}`}
+                className="glass-card rounded-xl p-6 flex flex-col hover-lift transition-all duration-500 group opacity-0 animate-fade-in"
+                style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors">
