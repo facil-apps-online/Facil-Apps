@@ -1,5 +1,20 @@
 import { useState } from 'react';
-import { ExternalLink, Clock, Sparkles } from 'lucide-react';
+import { 
+  ExternalLink, 
+  Clock, 
+  Sparkles, 
+  Scissors, 
+  Pen, 
+  Car, 
+  Stethoscope, 
+  PawPrint, 
+  Briefcase, 
+  BarChart3, 
+  FileText, 
+  MessageCircle, 
+  ClipboardCheck,
+  LucideIcon
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -15,6 +30,7 @@ interface AppItem {
   };
   status: AppStatus;
   url?: string;
+  icon: LucideIcon;
 }
 
 const applications: AppItem[] = [
@@ -26,6 +42,7 @@ const applications: AppItem[] = [
     },
     status: 'production',
     url: 'https://glamtica.app',
+    icon: Scissors,
   },
   {
     name: 'TattooSuite',
@@ -35,6 +52,7 @@ const applications: AppItem[] = [
     },
     status: 'production',
     url: 'https://tattoosuite.app',
+    icon: Pen,
   },
   {
     name: 'Autopartia',
@@ -43,6 +61,7 @@ const applications: AppItem[] = [
       en: 'ERP for the auto parts sector from importers to workshops',
     },
     status: 'development',
+    icon: Car,
   },
   {
     name: 'Odontología',
@@ -51,6 +70,7 @@ const applications: AppItem[] = [
       en: 'ERP with RIPS for dental offices',
     },
     status: 'planning',
+    icon: Stethoscope,
   },
   {
     name: 'VeteZooft',
@@ -59,6 +79,7 @@ const applications: AppItem[] = [
       en: 'ERP for veterinary clinics',
     },
     status: 'planning',
+    icon: PawPrint,
   },
   {
     name: 'Facil ERP',
@@ -67,6 +88,7 @@ const applications: AppItem[] = [
       en: 'Generic ERP for all types of businesses',
     },
     status: 'planning',
+    icon: Briefcase,
   },
   {
     name: 'Report Labs',
@@ -75,6 +97,7 @@ const applications: AppItem[] = [
       en: 'Custom reporting system for companies',
     },
     status: 'planning',
+    icon: BarChart3,
   },
   {
     name: 'Documenta',
@@ -83,6 +106,7 @@ const applications: AppItem[] = [
       en: 'Document management system',
     },
     status: 'planning',
+    icon: FileText,
   },
   {
     name: 'Conéctate',
@@ -91,6 +115,7 @@ const applications: AppItem[] = [
       en: 'Communication system for schools',
     },
     status: 'planning',
+    icon: MessageCircle,
   },
   {
     name: 'Gestion.app',
@@ -99,6 +124,7 @@ const applications: AppItem[] = [
       en: 'System to manage uniforms, certificates, courses, employee signatures, and more',
     },
     status: 'planning',
+    icon: ClipboardCheck,
   },
 ];
 
@@ -170,18 +196,28 @@ const Applications = () => {
                 className="glass-card rounded-xl p-6 flex flex-col hover-lift transition-all duration-500 group opacity-0 animate-fade-in"
                 style={{ animationDelay: `${index * 80}ms` }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors">
-                    {app.name}
-                  </h3>
-                  <Badge
-                    variant="outline"
-                    className={`${statusColors[app.status]} text-xs`}
+                <div className="flex items-start gap-3 mb-4">
+                  <div 
+                    className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"
+                    aria-hidden="true"
                   >
-                    {app.status === 'production' && t('apps.status.production')}
-                    {app.status === 'development' && t('apps.status.development')}
+                    <app.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors truncate">
+                        {app.name}
+                      </h3>
+                      <Badge
+                        variant="outline"
+                        className={`${statusColors[app.status]} text-xs flex-shrink-0`}
+                      >
+                        {app.status === 'production' && t('apps.status.production')}
+                        {app.status === 'development' && t('apps.status.development')}
                     {app.status === 'planning' && t('apps.status.planning')}
-                  </Badge>
+                      </Badge>
+                    </div>
+                  </div>
                 </div>
                 <p className="text-muted-foreground text-sm flex-grow mb-6">
                   {app.description[language]}
