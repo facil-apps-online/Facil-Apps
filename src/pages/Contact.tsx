@@ -10,7 +10,7 @@ import Layout from '@/components/layout/Layout';
 
 const PHONE_NUMBER = '+573117208085';
 const ADDRESS = 'Carrera 17 # 63A-26, Bogotá';
-const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Carrera+17+%23+63A-26+Bogota';
+const MAPS_URL = 'https://www.google.com/maps?q=4.6514685,-74.0673773';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -110,7 +110,7 @@ const Contact = () => {
               {/* Map Embed */}
               <div className="glass-card rounded-2xl overflow-hidden h-64">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.5234567890123!2d-74.0600000!3d4.6500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMDAuMCJOIDc0wrAwMyczNi4wIlc!5e0!3m2!1ses!2sco!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.1!2d-74.0673773!3d4.6514685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMDUuMyJOIDc0wrAwNCcwMi42Ilc!5e0!3m2!1ses!2sco!4v1704067200000"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
