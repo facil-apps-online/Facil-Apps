@@ -192,72 +192,105 @@ const Applications = () => {
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredApps.map((app, index) => (
-              <div
-                key={`${filter}-${app.name}`}
-                className="glass-card rounded-xl p-6 flex flex-col hover-lift transition-all duration-500 group opacity-0 animate-fade-in"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <div className="flex items-start gap-3 mb-4">
-                  {app.logo ? (
-                    <img 
-                      src={app.logo} 
-                      alt={`Logo de ${app.name}`}
-                      loading="lazy"
-                      className="w-10 h-10 rounded-lg object-cover flex-shrink-0"
-                    />
-                  ) : app.icon ? (
-                    <div 
-                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"
-                      aria-hidden="true"
-                    >
-                      <app.icon className="w-5 h-5 text-primary" />
-                    </div>
-                  ) : null}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors truncate">
-                        {app.name}
-                      </h3>
-                      <Badge
-                        variant="outline"
-                        className={`${statusColors[app.status]} text-xs flex-shrink-0`}
-                      >
-                        {app.status === 'production' && t('apps.status.production')}
-                        {app.status === 'development' && t('apps.status.development')}
-                    {app.status === 'planning' && t('apps.status.planning')}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-muted-foreground text-sm flex-grow mb-6">
-                  {app.description[language]}
-                </p>
-                <div className="mt-auto">
-                  {app.status === 'production' && app.url ? (
-                    <Button
-                      asChild
-                      className="w-full gradient-bg text-secondary-foreground hover:opacity-90 transition-all"
-                    >
-                      <a href={app.url} target="_blank" rel="noopener noreferrer">
+            {filteredApps.map((app, index) => {
+              const isProduction = app.status === 'production' && app.url;
+              
+              const CardWrapper = isProduction ? 'a' : 'div';
+              const cardProps = isProduction
+                ? {
+                    href: app.url,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                  }
+                : {};
+
+              return (
+                <CardWrapper
+                  key={`${filter}-${app.name}`}
+                  {...cardProps}
+                  className={`glass-card rounded-xl p-6 flex flex-col hover-lift transition-all duration-500 group opacity-0 animate-fade-in ${
+                    isProduction ? 'cursor-pointer' : ''
+                  }`}
+                  style={{ animationDelay: `${index * 80}ms` }}
+                >
+                  {isProduction && app.logo ? (
+                    // Production card with ID badge style
+                    <>
+                      <div className="flex flex-col items-center text-center mb-4">
+                        <div className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-primary/20 shadow-lg mb-4 group-hover:border-primary/40 transition-colors">
+                          <img 
+                            src={app.logo} 
+                            alt={`Logo de ${app.name}`}
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <Badge
+                          variant="outline"
+                          className={`${statusColors[app.status]} text-xs mb-2`}
+                        >
+                          {t('apps.status.production')}
+                        </Badge>
+                        <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors">
+                          {app.name}
+                        </h3>
+                      </div>
+                      <p className="text-muted-foreground text-sm text-center flex-grow mb-4">
+                        {app.description[language]}
+                      </p>
+                      <div className="flex items-center justify-center gap-2 text-sm text-primary font-medium group-hover:gap-3 transition-all">
                         {t('apps.cta.visit')}
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                  ) : app.status === 'development' ? (
-                    <Button disabled variant="outline" className="w-full">
-                      <Clock className="mr-2 h-4 w-4" />
-                      {t('apps.status.development')}
-                    </Button>
+                        <ExternalLink className="h-4 w-4" />
+                      </div>
+                    </>
                   ) : (
-                    <Button disabled variant="outline" className="w-full">
-                      <Sparkles className="mr-2 h-4 w-4" />
-                      {t('apps.cta.soon')}
-                    </Button>
+                    // Regular card for development/planning
+                    <>
+                      <div className="flex items-start gap-3 mb-4">
+                        {app.icon && (
+                          <div 
+                            className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0"
+                            aria-hidden="true"
+                          >
+                            <app.icon className="w-5 h-5 text-primary" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <h3 className="text-xl font-display font-semibold group-hover:text-primary transition-colors truncate">
+                              {app.name}
+                            </h3>
+                            <Badge
+                              variant="outline"
+                              className={`${statusColors[app.status]} text-xs flex-shrink-0`}
+                            >
+                              {app.status === 'development' && t('apps.status.development')}
+                              {app.status === 'planning' && t('apps.status.planning')}
+                            </Badge>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground text-sm flex-grow mb-6">
+                        {app.description[language]}
+                      </p>
+                      <div className="mt-auto">
+                        {app.status === 'development' ? (
+                          <Button disabled variant="outline" className="w-full">
+                            <Clock className="mr-2 h-4 w-4" />
+                            {t('apps.status.development')}
+                          </Button>
+                        ) : (
+                          <Button disabled variant="outline" className="w-full">
+                            <Sparkles className="mr-2 h-4 w-4" />
+                            {t('apps.cta.soon')}
+                          </Button>
+                        )}
+                      </div>
+                    </>
                   )}
-                </div>
-              </div>
-            ))}
+                </CardWrapper>
+              );
+            })}
           </div>
         </div>
       </section>
