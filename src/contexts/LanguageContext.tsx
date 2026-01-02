@@ -71,6 +71,8 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.form.message': 'Mensaje',
     'contact.form.submit': 'Enviar mensaje',
     'contact.form.success': '¡Mensaje enviado correctamente!',
+    'contact.info': 'Información de contacto',
+    'contact.address': 'Dirección',
     
     // Footer
     'footer.tagline': 'Creando software que impulsa negocios en toda Latinoamérica.',
@@ -146,6 +148,8 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.form.message': 'Message',
     'contact.form.submit': 'Send message',
     'contact.form.success': 'Message sent successfully!',
+    'contact.info': 'Contact information',
+    'contact.address': 'Address',
     
     // Footer
     'footer.tagline': 'Creating software that drives businesses across Latin America.',

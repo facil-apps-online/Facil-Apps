@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Send, Mail, Building2, User, MessageSquare } from 'lucide-react';
+import { Send, Mail, Building2, User, MessageSquare, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -7,6 +7,10 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
+
+const PHONE_NUMBER = '+573117208085';
+const ADDRESS = 'Carrera 17 # 63A-26, Bogotá';
+const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Carrera+17+%23+63A-26+Bogota';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -60,10 +64,65 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Form Section */}
+      {/* Content Section */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4">
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div className="glass-card rounded-2xl p-8">
+                <h2 className="text-xl font-display font-semibold mb-6">{t('contact.info')}</h2>
+                <div className="space-y-6">
+                  {/* WhatsApp */}
+                  <a
+                    href={`https://wa.me/${PHONE_NUMBER.replace(/\+/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-4 group"
+                  >
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-primary transition-colors">WhatsApp</p>
+                      <p className="text-sm text-muted-foreground">{PHONE_NUMBER}</p>
+                    </div>
+                  </a>
+
+                  {/* Address */}
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-4 group"
+                  >
+                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-primary transition-colors">{t('contact.address')}</p>
+                      <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Map Embed */}
+              <div className="glass-card rounded-2xl overflow-hidden h-64">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.5234567890123!2d-74.0600000!3d4.6500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMDAuMCJOIDc0wrAwMyczNi4wIlc!5e0!3m2!1ses!2sco!4v1234567890"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de Facil Apps Online"
+                />
+              </div>
+            </div>
+
+            {/* Form */}
             <div className="glass-card rounded-2xl p-8 md:p-10">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
