@@ -33,6 +33,14 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link
+                  to="/nosotros"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {t('nav.about')}
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/aplicaciones"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
