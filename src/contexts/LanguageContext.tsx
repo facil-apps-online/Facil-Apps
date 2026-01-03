@@ -12,6 +12,7 @@ const translations: Record<Language, Record<string, string>> = {
   es: {
     // Navigation
     'nav.home': 'Inicio',
+    'nav.about': 'Nosotros',
     'nav.apps': 'Aplicaciones',
     'nav.model': 'Modelo',
     'nav.contact': 'Contacto',
@@ -74,6 +75,26 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.info': 'Información de contacto',
     'contact.address': 'Dirección',
     
+    // About Page
+    'aboutPage.title': 'Quiénes Somos',
+    'aboutPage.description': 'Facil Apps Online es una empresa de tecnología especializada en el desarrollo de software empresarial bajo modelo SaaS. Creamos soluciones modernas, escalables y parametrizables para diferentes industrias en Latinoamérica y otros mercados.',
+    'aboutPage.mission.title': 'Misión',
+    'aboutPage.mission.description': 'Desarrollar software empresarial innovador y accesible que permita a las empresas de Latinoamérica optimizar sus operaciones, aumentar su productividad y crecer de manera sostenible mediante soluciones tecnológicas de alta calidad.',
+    'aboutPage.vision.title': 'Visión',
+    'aboutPage.vision.description': 'Ser la empresa líder en desarrollo de software SaaS en Latinoamérica, reconocida por la excelencia de nuestras soluciones, la innovación constante y el impacto positivo en el crecimiento de nuestros clientes.',
+    'aboutPage.values.title': 'Nuestros Valores',
+    'aboutPage.values.subtitle': 'Los principios que guían cada decisión y acción en nuestra empresa.',
+    'aboutPage.values.innovation.title': 'Innovación',
+    'aboutPage.values.innovation.description': 'Buscamos constantemente nuevas formas de resolver problemas y mejorar nuestras soluciones.',
+    'aboutPage.values.commitment.title': 'Compromiso',
+    'aboutPage.values.commitment.description': 'Nos dedicamos completamente al éxito de nuestros clientes y sus negocios.',
+    'aboutPage.values.collaboration.title': 'Colaboración',
+    'aboutPage.values.collaboration.description': 'Trabajamos en equipo con nuestros clientes para crear las mejores soluciones.',
+    'aboutPage.values.excellence.title': 'Excelencia',
+    'aboutPage.values.excellence.description': 'Nos esforzamos por superar las expectativas en cada proyecto.',
+    'aboutPage.cta.title': '¿Listo para transformar tu negocio?',
+    'aboutPage.cta.description': 'Únete a las empresas que ya confían en nuestras soluciones tecnológicas.',
+
     // Footer
     'footer.tagline': 'Creando software que impulsa negocios en toda Latinoamérica.',
     'footer.links': 'Enlaces',
@@ -89,6 +110,7 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
     'nav.home': 'Home',
+    'nav.about': 'About Us',
     'nav.apps': 'Applications',
     'nav.model': 'Model',
     'nav.contact': 'Contact',
@@ -151,6 +173,26 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.info': 'Contact information',
     'contact.address': 'Address',
     
+    // About Page
+    'aboutPage.title': 'About Us',
+    'aboutPage.description': 'Facil Apps Online is a technology company specialized in developing enterprise software under the SaaS model. We create modern, scalable, and customizable solutions for different industries in Latin America and other markets.',
+    'aboutPage.mission.title': 'Mission',
+    'aboutPage.mission.description': 'To develop innovative and accessible enterprise software that enables Latin American companies to optimize their operations, increase productivity, and grow sustainably through high-quality technological solutions.',
+    'aboutPage.vision.title': 'Vision',
+    'aboutPage.vision.description': 'To be the leading SaaS software development company in Latin America, recognized for the excellence of our solutions, constant innovation, and positive impact on our clients\' growth.',
+    'aboutPage.values.title': 'Our Values',
+    'aboutPage.values.subtitle': 'The principles that guide every decision and action in our company.',
+    'aboutPage.values.innovation.title': 'Innovation',
+    'aboutPage.values.innovation.description': 'We constantly seek new ways to solve problems and improve our solutions.',
+    'aboutPage.values.commitment.title': 'Commitment',
+    'aboutPage.values.commitment.description': 'We are fully dedicated to the success of our clients and their businesses.',
+    'aboutPage.values.collaboration.title': 'Collaboration',
+    'aboutPage.values.collaboration.description': 'We work as a team with our clients to create the best solutions.',
+    'aboutPage.values.excellence.title': 'Excellence',
+    'aboutPage.values.excellence.description': 'We strive to exceed expectations in every project.',
+    'aboutPage.cta.title': 'Ready to transform your business?',
+    'aboutPage.cta.description': 'Join the companies that already trust our technological solutions.',
+
     // Footer
     'footer.tagline': 'Creating software that drives businesses across Latin America.',
     'footer.links': 'Links',
