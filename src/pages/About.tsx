@@ -3,12 +3,20 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import { useStaggeredAnimation } from '@/hooks/useScrollAnimation';
 import SEOHead from '@/components/SEOHead';
+import teamPhoto from '@/assets/team-photo.png';
 
 const values = [
   { key: 'innovation', icon: Lightbulb },
   { key: 'commitment', icon: Heart },
   { key: 'collaboration', icon: Users },
   { key: 'excellence', icon: Rocket },
+];
+
+const teamMembers = [
+  { key: 'ceo', initials: 'CM' },
+  { key: 'cto', initials: 'AG' },
+  { key: 'lead', initials: 'MT' },
+  { key: 'design', initials: 'LR' },
 ];
 
 const About = () => {
@@ -116,6 +124,55 @@ const About = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 md:py-32 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              {t('aboutPage.team.title')}
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              {t('aboutPage.team.subtitle')}
+            </p>
+          </div>
+
+          {/* Team Photo */}
+          <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
+            <img 
+              src={teamPhoto} 
+              alt="Equipo de Facil Apps Online trabajando" 
+              className="w-full h-64 md:h-96 object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Team Members Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {teamMembers.map((member) => (
+              <div
+                key={member.key}
+                className="glass-card rounded-xl p-6 text-center hover-lift transition-all duration-300"
+              >
+                <div className="w-20 h-20 mx-auto mb-4 rounded-full gradient-bg flex items-center justify-center shadow-lg">
+                  <span className="text-2xl font-bold text-primary-foreground">
+                    {member.initials}
+                  </span>
+                </div>
+                <h3 className="text-lg font-display font-semibold mb-1">
+                  {t(`aboutPage.team.${member.key}.name`)}
+                </h3>
+                <p className="text-primary font-medium text-sm mb-2">
+                  {t(`aboutPage.team.${member.key}.role`)}
+                </p>
+                <p className="text-muted-foreground text-sm">
+                  {t(`aboutPage.team.${member.key}.bio`)}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
