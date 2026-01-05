@@ -94,6 +94,22 @@ const translations: Record<Language, Record<string, string>> = {
     'aboutPage.values.excellence.description': 'Nos esforzamos por superar las expectativas en cada proyecto.',
     'aboutPage.cta.title': '¿Listo para transformar tu negocio?',
     'aboutPage.cta.description': 'Únete a las empresas que ya confían en nuestras soluciones tecnológicas.',
+    
+    // Team
+    'aboutPage.team.title': 'Nuestro Equipo',
+    'aboutPage.team.subtitle': 'Profesionales apasionados por la tecnología y la innovación.',
+    'aboutPage.team.ceo.name': 'Carlos Mendoza',
+    'aboutPage.team.ceo.role': 'CEO & Fundador',
+    'aboutPage.team.ceo.bio': 'Más de 15 años liderando proyectos de transformación digital.',
+    'aboutPage.team.cto.name': 'Ana García',
+    'aboutPage.team.cto.role': 'CTO',
+    'aboutPage.team.cto.bio': 'Experta en arquitectura de software y soluciones cloud.',
+    'aboutPage.team.lead.name': 'Miguel Torres',
+    'aboutPage.team.lead.role': 'Lead Developer',
+    'aboutPage.team.lead.bio': 'Especialista en desarrollo full-stack y metodologías ágiles.',
+    'aboutPage.team.design.name': 'Laura Ramírez',
+    'aboutPage.team.design.role': 'UX/UI Designer',
+    'aboutPage.team.design.bio': 'Diseñadora enfocada en crear experiencias intuitivas.',
 
     // Footer
     'footer.tagline': 'Creando software que impulsa negocios en toda Latinoamérica.',
@@ -192,6 +208,22 @@ const translations: Record<Language, Record<string, string>> = {
     'aboutPage.values.excellence.description': 'We strive to exceed expectations in every project.',
     'aboutPage.cta.title': 'Ready to transform your business?',
     'aboutPage.cta.description': 'Join the companies that already trust our technological solutions.',
+    
+    // Team
+    'aboutPage.team.title': 'Our Team',
+    'aboutPage.team.subtitle': 'Professionals passionate about technology and innovation.',
+    'aboutPage.team.ceo.name': 'Carlos Mendoza',
+    'aboutPage.team.ceo.role': 'CEO & Founder',
+    'aboutPage.team.ceo.bio': 'Over 15 years leading digital transformation projects.',
+    'aboutPage.team.cto.name': 'Ana García',
+    'aboutPage.team.cto.role': 'CTO',
+    'aboutPage.team.cto.bio': 'Expert in software architecture and cloud solutions.',
+    'aboutPage.team.lead.name': 'Miguel Torres',
+    'aboutPage.team.lead.role': 'Lead Developer',
+    'aboutPage.team.lead.bio': 'Specialist in full-stack development and agile methodologies.',
+    'aboutPage.team.design.name': 'Laura Ramírez',
+    'aboutPage.team.design.role': 'UX/UI Designer',
+    'aboutPage.team.design.bio': 'Designer focused on creating intuitive experiences.',
 
     // Footer
     'footer.tagline': 'Creating software that drives businesses across Latin America.',
