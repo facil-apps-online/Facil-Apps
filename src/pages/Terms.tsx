@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
+import SEOHead from '@/components/SEOHead';
 
 const Terms = () => {
   const { t, language } = useLanguage();
@@ -67,6 +68,11 @@ const Terms = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Términos y Condiciones | Facil Apps Online"
+        description="Lee los términos y condiciones de uso de las plataformas de Facil Apps Online. Conoce tus derechos y responsabilidades."
+        path="/terminos"
+      />
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">

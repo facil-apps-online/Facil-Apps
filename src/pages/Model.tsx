@@ -2,6 +2,7 @@ import { Cloud, Layers, Puzzle, Rocket } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import { useStaggeredAnimation } from '@/hooks/useScrollAnimation';
+import SEOHead from '@/components/SEOHead';
 
 const modelItems = [
   {
@@ -28,6 +29,11 @@ const Model = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Modelo de Negocio | Facil Apps Online"
+        description="Conoce nuestro modelo SaaS multi-tenant, modular y escalable. Arquitectura cloud-native diseñada para el crecimiento de tu empresa."
+        path="/modelo"
+      />
       {/* Hero */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto px-4">

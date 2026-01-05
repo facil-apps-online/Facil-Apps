@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
+import SEOHead from '@/components/SEOHead';
 
 import logoGlamtica from '@/assets/logo-glamtica.png';
 import logoTattoosuite from '@/assets/logo-tattoosuite.png';
@@ -153,6 +154,11 @@ const Applications = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Aplicaciones SaaS | Facil Apps Online"
+        description="Descubre nuestro ecosistema de aplicaciones SaaS: Glamtica para salones de belleza, TattooSuite para estudios de tatuajes, y más soluciones empresariales."
+        path="/aplicaciones"
+      />
       {/* Hero */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto px-4">

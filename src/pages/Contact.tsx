@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
+import SEOHead from '@/components/SEOHead';
 
 const PHONE_NUMBER = '+573117208085';
 const ADDRESS = 'Carrera 17 # 63A-26, Bogotá';
@@ -50,6 +51,11 @@ const Contact = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Contacto | Facil Apps Online"
+        description="Contáctanos para conocer más sobre nuestras soluciones SaaS empresariales. Estamos en Bogotá, Colombia y listos para ayudarte."
+        path="/contacto"
+      />
       {/* Hero */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto px-4">

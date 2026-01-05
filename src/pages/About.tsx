@@ -2,6 +2,7 @@ import { Target, Eye, Lightbulb, Heart, Users, Rocket } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import { useStaggeredAnimation } from '@/hooks/useScrollAnimation';
+import SEOHead from '@/components/SEOHead';
 
 const values = [
   { key: 'innovation', icon: Lightbulb },
@@ -16,6 +17,11 @@ const About = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Quiénes Somos | Facil Apps Online"
+        description="Conoce la misión, visión y valores de Facil Apps Online. Empresa de tecnología especializada en software SaaS empresarial para Latinoamérica."
+        path="/quienes-somos"
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />

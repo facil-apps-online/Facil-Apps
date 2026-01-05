@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
+import SEOHead from '@/components/SEOHead';
 
 const Privacy = () => {
   const { t, language } = useLanguage();
@@ -75,6 +76,11 @@ const Privacy = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Política de Privacidad | Facil Apps Online"
+        description="Conoce cómo protegemos y tratamos tu información personal en Facil Apps Online. Tu privacidad es nuestra prioridad."
+        path="/privacidad"
+      />
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
