@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import { useStaggeredAnimation } from '@/hooks/useScrollAnimation';
 import SEOHead from '@/components/SEOHead';
+import logoSquare from '@/assets/FAO_Cuadrado.png';
 
 const modelItems = [
   {
@@ -94,10 +95,12 @@ const Model = () => {
             <div className="relative">
               {/* Central Node */}
               <div className="flex justify-center mb-16">
-                <div className="w-32 h-32 rounded-full gradient-bg flex items-center justify-center shadow-2xl animate-pulse-glow">
-                  <span className="text-primary-foreground font-display font-bold text-lg text-center px-4">
-                    Facil Apps
-                  </span>
+                <div className="w-32 h-32 rounded-full gradient-bg flex items-center justify-center shadow-2xl animate-pulse-glow p-2">
+                  <img 
+                    src={logoSquare} 
+                    alt="Facil Apps Online" 
+                    className="w-24 h-24 object-contain rounded-full"
+                  />
                 </div>
               </div>
 
