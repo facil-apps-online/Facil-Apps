@@ -95,11 +95,11 @@ const Model = () => {
             <div className="relative">
               {/* Central Node */}
               <div className="flex justify-center mb-16">
-                <div className="w-32 h-32 rounded-full gradient-bg flex items-center justify-center shadow-2xl animate-pulse-glow p-2">
+                <div className="w-36 h-36 rounded-full gradient-bg flex items-center justify-center shadow-2xl animate-pulse-glow p-3">
                   <img 
                     src={logoSquare} 
                     alt="Facil Apps Online" 
-                    className="w-24 h-24 object-contain rounded-full"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </div>
