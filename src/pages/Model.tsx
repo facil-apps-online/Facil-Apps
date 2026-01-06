@@ -96,11 +96,13 @@ const Model = () => {
               {/* Central Node */}
               <div className="flex justify-center mb-16">
                 <div className="w-40 h-40 rounded-full gradient-bg flex items-center justify-center shadow-2xl animate-pulse-glow">
-                  <div className="w-32 h-32 rounded-full bg-white flex items-center justify-center">
-                    <img 
-                      src={logoSquare} 
-                      alt="Facil Apps Online" 
-                      className="w-28 h-28 object-contain"
+                  <div className="w-32 h-32 rounded-full bg-background flex items-center justify-center p-5">
+                    <img
+                      src={logoSquare}
+                      alt="Logo de Fácil Apps Online"
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
