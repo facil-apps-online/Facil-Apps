@@ -25,14 +25,16 @@ const ecosystemItems = [
 ];
 
 const Index = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { containerRef, visibleItems } = useStaggeredAnimation(4, 150);
 
   return (
     <Layout>
       <SEOHead
-        title="Facil Apps Online | Software SaaS para empresas"
-        description="Creamos software que impulsa negocios. Plataformas SaaS diseñadas para escalar empresas en diferentes industrias en Latinoamérica."
+        title={language === 'es' ? "Facil Apps Online | Software SaaS" : "Facil Apps Online | SaaS Software"}
+        description={language === 'es' 
+          ? "Software SaaS para empresas. Plataformas diseñadas para escalar negocios en Latinoamérica."
+          : "SaaS software for businesses. Platforms designed to scale companies in Latin America."}
         path="/"
       />
       {/* Hero Section */}

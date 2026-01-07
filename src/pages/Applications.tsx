@@ -155,8 +155,10 @@ const Applications = () => {
   return (
     <Layout>
       <SEOHead
-        title="Aplicaciones SaaS | Facil Apps Online"
-        description="Descubre nuestro ecosistema de aplicaciones SaaS: Glamtica para salones de belleza, TattooSuite para estudios de tatuajes, y más soluciones empresariales."
+        title={language === 'es' ? "Aplicaciones SaaS | Facil Apps Online" : "SaaS Applications | Facil Apps Online"}
+        description={language === 'es' 
+          ? "Ecosistema de apps SaaS: Glamtica, TattooSuite y más soluciones empresariales."
+          : "SaaS app ecosystem: Glamtica, TattooSuite and more business solutions."}
         path="/aplicaciones"
       />
       {/* Hero */}
