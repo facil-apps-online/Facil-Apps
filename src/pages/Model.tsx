@@ -25,14 +25,16 @@ const modelItems = [
 ];
 
 const Model = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { containerRef, visibleItems } = useStaggeredAnimation(4, 150);
 
   return (
     <Layout>
       <SEOHead
-        title="Modelo de Negocio | Facil Apps Online"
-        description="Conoce nuestro modelo SaaS multi-tenant, modular y escalable. Arquitectura cloud-native diseñada para el crecimiento de tu empresa."
+        title={language === 'es' ? "Modelo de Negocio | Facil Apps Online" : "Business Model | Facil Apps Online"}
+        description={language === 'es' 
+          ? "Modelo SaaS multi-tenant, modular y escalable. Arquitectura cloud-native."
+          : "Multi-tenant, modular and scalable SaaS model. Cloud-native architecture."}
         path="/modelo"
       />
       {/* Hero */}

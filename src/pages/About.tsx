@@ -20,15 +20,17 @@ const teamMembers = [
 ];
 
 const About = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { containerRef, visibleItems } = useStaggeredAnimation(4, 150);
 
   return (
     <Layout>
       <SEOHead
-        title="Quiénes Somos | Facil Apps Online"
-        description="Conoce la misión, visión y valores de Facil Apps Online. Empresa de tecnología especializada en software SaaS empresarial para Latinoamérica."
-        path="/quienes-somos"
+        title={language === 'es' ? "Nosotros | Facil Apps Online" : "About Us | Facil Apps Online"}
+        description={language === 'es' 
+          ? "Misión, visión y valores de Facil Apps Online. Software SaaS para empresas en Latinoamérica."
+          : "Mission, vision and values of Facil Apps Online. SaaS software for businesses in Latin America."}
+        path="/nosotros"
       />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">

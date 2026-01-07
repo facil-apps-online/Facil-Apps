@@ -69,8 +69,10 @@ const Terms = () => {
   return (
     <Layout>
       <SEOHead
-        title="Términos y Condiciones | Facil Apps Online"
-        description="Lee los términos y condiciones de uso de las plataformas de Facil Apps Online. Conoce tus derechos y responsabilidades."
+        title={language === 'es' ? "Términos y Condiciones | Facil Apps" : "Terms & Conditions | Facil Apps"}
+        description={language === 'es' 
+          ? "Términos de uso de las plataformas Facil Apps Online."
+          : "Terms of use for Facil Apps Online platforms."}
         path="/terminos"
       />
       <section className="py-20 md:py-32">

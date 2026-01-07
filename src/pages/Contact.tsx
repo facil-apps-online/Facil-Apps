@@ -14,7 +14,7 @@ const ADDRESS = 'Carrera 17 # 63A-26, Bogotá';
 const MAPS_URL = 'https://www.google.com/maps?q=4.6514685,-74.0673773';
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -52,8 +52,10 @@ const Contact = () => {
   return (
     <Layout>
       <SEOHead
-        title="Contacto | Facil Apps Online"
-        description="Contáctanos para conocer más sobre nuestras soluciones SaaS empresariales. Estamos en Bogotá, Colombia y listos para ayudarte."
+        title={language === 'es' ? "Contacto | Facil Apps Online" : "Contact | Facil Apps Online"}
+        description={language === 'es' 
+          ? "Contáctanos para conocer nuestras soluciones SaaS. Bogotá, Colombia."
+          : "Contact us to learn about our SaaS solutions. Bogotá, Colombia."}
         path="/contacto"
       />
       {/* Hero */}

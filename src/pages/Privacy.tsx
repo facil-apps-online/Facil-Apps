@@ -77,8 +77,10 @@ const Privacy = () => {
   return (
     <Layout>
       <SEOHead
-        title="Política de Privacidad | Facil Apps Online"
-        description="Conoce cómo protegemos y tratamos tu información personal en Facil Apps Online. Tu privacidad es nuestra prioridad."
+        title={language === 'es' ? "Política de Privacidad | Facil Apps Online" : "Privacy Policy | Facil Apps Online"}
+        description={language === 'es' 
+          ? "Cómo protegemos tu información personal. Tu privacidad es prioridad."
+          : "How we protect your personal information. Your privacy is priority."}
         path="/privacidad"
       />
       <section className="py-20 md:py-32">
