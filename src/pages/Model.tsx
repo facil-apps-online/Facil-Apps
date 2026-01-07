@@ -56,7 +56,7 @@ const Model = () => {
         <div className="container mx-auto px-4">
           <div
             ref={containerRef as React.RefObject<HTMLDivElement>}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
           >
             {modelItems.map((item, index) => {
               const Icon = item.icon;
