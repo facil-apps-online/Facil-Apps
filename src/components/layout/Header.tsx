@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logoRectangular from '@/assets/FAO_Rectangular.png';
@@ -78,6 +78,23 @@ const Header = () => {
 
           {/* Right Actions */}
           <div className="flex items-center space-x-2">
+            {/* Admin Portal Link */}
+            <a
+              href="https://admin.facil-apps.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex"
+            >
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-1.5 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                <span className="text-xs font-medium">{t('nav.admin')}</span>
+                <ExternalLink className="h-3.5 w-3.5" />
+              </Button>
+            </a>
+
             {/* Language Switcher */}
             <Button
               variant="ghost"
@@ -125,6 +142,16 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
+            {/* Admin Portal Link - Mobile */}
+            <a
+              href="https://admin.facil-apps.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3 text-sm font-medium rounded-lg transition-colors duration-300 text-primary hover:bg-primary/10 flex items-center gap-2"
+            >
+              {t('nav.admin')}
+              <ExternalLink className="h-4 w-4" />
+            </a>
           </nav>
         </div>
       </div>

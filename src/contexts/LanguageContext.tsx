@@ -16,6 +16,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.apps': 'Aplicaciones',
     'nav.model': 'Modelo',
     'nav.contact': 'Contacto',
+    'nav.admin': 'Portal Admin',
     
     // Hero
     'hero.headline': 'Creamos software que impulsa negocios',
@@ -130,6 +131,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.apps': 'Applications',
     'nav.model': 'Model',
     'nav.contact': 'Contact',
+    'nav.admin': 'Admin Portal',
     
     // Hero
     'hero.headline': 'We create software that drives businesses',
