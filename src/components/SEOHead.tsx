@@ -7,7 +7,7 @@ interface SEOHeadProps {
   image?: string;
 }
 
-const BASE_URL = 'https://facilapps.online';
+const BASE_URL = 'https://facil-apps.online';
 
 const SEOHead = ({ title, description, path = '', image = '/og-image.png' }: SEOHeadProps) => {
   const fullUrl = `${BASE_URL}${path}`;
