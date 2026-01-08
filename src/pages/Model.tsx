@@ -26,7 +26,7 @@ const modelItems = [
 
 const Model = () => {
   const { t, language } = useLanguage();
-  const { containerRef, visibleItems } = useStaggeredAnimation(4, 150);
+  const { containerRef, visibleItems } = useStaggeredAnimation(modelItems.length, 150);
 
   return (
     <Layout>
