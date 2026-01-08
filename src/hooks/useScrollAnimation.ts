@@ -30,13 +30,20 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
     new Array(itemCount).fill(false)
   );
   const containerRef = useRef<HTMLElement>(null);
+
+  // Marks completion (used to avoid re-running on scroll)
   const hasAnimated = useRef(false);
+
+  // Guards against the React StrictMode mount -> cleanup -> mount cycle
+  // so we don't get stuck mid-animation in dev.
+  const isRevealing = useRef(false);
 
   useEffect(() => {
     // Keep state in sync when the list size changes (e.g., filtering)
     if (visibleItems.length !== itemCount) {
       setVisibleItems(new Array(itemCount).fill(false));
       hasAnimated.current = false;
+      isRevealing.current = false;
       return;
     }
 
@@ -45,48 +52,62 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
     const el = containerRef.current;
     if (!el) return;
 
-    let interval: ReturnType<typeof setInterval> | undefined;
+    const timeouts: Array<ReturnType<typeof setTimeout>> = [];
     let revealFallback: ReturnType<typeof setTimeout> | undefined;
+
+    const revealAll = () => {
+      setVisibleItems(new Array(itemCount).fill(true));
+      hasAnimated.current = true;
+      isRevealing.current = false;
+    };
+
+    const startReveal = () => {
+      if (hasAnimated.current || isRevealing.current) return;
+      isRevealing.current = true;
+
+      for (let i = 0; i < itemCount; i++) {
+        const t = setTimeout(() => {
+          setVisibleItems((prev) => {
+            if (i >= prev.length) return prev;
+            if (prev[i]) return prev;
+            const next = [...prev];
+            next[i] = true;
+            return next;
+          });
+
+          if (i === itemCount - 1) {
+            hasAnimated.current = true;
+            isRevealing.current = false;
+          }
+        }, i * delay);
+
+        timeouts.push(t);
+      }
+    };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting || hasAnimated.current) return;
-
-        hasAnimated.current = true;
+        if (!entry.isIntersecting) return;
         observer.disconnect();
-
-        let index = 0;
-        interval = setInterval(() => {
-          if (index < itemCount) {
-            setVisibleItems((prev) => {
-              if (index >= prev.length) return prev;
-              const next = [...prev];
-              next[index] = true;
-              return next;
-            });
-            index++;
-          } else if (interval) {
-            clearInterval(interval);
-          }
-        }, delay);
+        startReveal();
       },
       { threshold: 0.1 }
     );
 
     observer.observe(el);
 
-    // Fallback: if the observer never fires (some layouts/browsers), reveal anyway.
+    // Fallback: if the observer never fires, reveal anyway.
     revealFallback = setTimeout(() => {
-      if (hasAnimated.current) return;
-      hasAnimated.current = true;
-      setVisibleItems(new Array(itemCount).fill(true));
+      if (hasAnimated.current || isRevealing.current) return;
       observer.disconnect();
+      revealAll();
     }, 600);
 
     return () => {
-      if (interval) clearInterval(interval);
+      timeouts.forEach((t) => clearTimeout(t));
       if (revealFallback) clearTimeout(revealFallback);
       observer.disconnect();
+      isRevealing.current = false;
     };
   }, [itemCount, delay, visibleItems.length]);
 
