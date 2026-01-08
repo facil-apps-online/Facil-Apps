@@ -31,19 +31,15 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
   );
   const containerRef = useRef<HTMLElement>(null);
 
-  // Marks completion (used to avoid re-running on scroll)
+  // Important: don't mark as animated until the last item is revealed.
+  // This prevents React StrictMode's mount→cleanup→mount cycle from leaving items hidden.
   const hasAnimated = useRef(false);
-
-  // Guards against the React StrictMode mount -> cleanup -> mount cycle
-  // so we don't get stuck mid-animation in dev.
-  const isRevealing = useRef(false);
 
   useEffect(() => {
     // Keep state in sync when the list size changes (e.g., filtering)
     if (visibleItems.length !== itemCount) {
       setVisibleItems(new Array(itemCount).fill(false));
       hasAnimated.current = false;
-      isRevealing.current = false;
       return;
     }
 
@@ -54,34 +50,28 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
 
     const timeouts: Array<ReturnType<typeof setTimeout>> = [];
     let revealFallback: ReturnType<typeof setTimeout> | undefined;
-
-    const revealAll = () => {
-      setVisibleItems(new Array(itemCount).fill(true));
-      hasAnimated.current = true;
-      isRevealing.current = false;
-    };
+    let started = false;
 
     const startReveal = () => {
-      if (hasAnimated.current || isRevealing.current) return;
-      isRevealing.current = true;
+      if (started || hasAnimated.current) return;
+      started = true;
 
       for (let i = 0; i < itemCount; i++) {
-        const t = setTimeout(() => {
-          setVisibleItems((prev) => {
-            if (i >= prev.length) return prev;
-            if (prev[i]) return prev;
-            const next = [...prev];
-            next[i] = true;
-            return next;
-          });
+        timeouts.push(
+          setTimeout(() => {
+            setVisibleItems((prev) => {
+              if (i >= prev.length) return prev;
+              if (prev[i]) return prev;
+              const next = [...prev];
+              next[i] = true;
+              return next;
+            });
 
-          if (i === itemCount - 1) {
-            hasAnimated.current = true;
-            isRevealing.current = false;
-          }
-        }, i * delay);
-
-        timeouts.push(t);
+            if (i === itemCount - 1) {
+              hasAnimated.current = true;
+            }
+          }, i * delay)
+        );
       }
     };
 
@@ -98,16 +88,19 @@ export const useStaggeredAnimation = (itemCount: number, delay = 100) => {
 
     // Fallback: if the observer never fires, reveal anyway.
     revealFallback = setTimeout(() => {
-      if (hasAnimated.current || isRevealing.current) return;
+      if (started || hasAnimated.current) return;
+      started = true;
+      setVisibleItems(new Array(itemCount).fill(true));
+      hasAnimated.current = true;
       observer.disconnect();
-      revealAll();
     }, 600);
 
     return () => {
       timeouts.forEach((t) => clearTimeout(t));
       if (revealFallback) clearTimeout(revealFallback);
       observer.disconnect();
-      isRevealing.current = false;
+      // In dev StrictMode, allow the second mount to run the reveal again.
+      if (!hasAnimated.current) started = false;
     };
   }, [itemCount, delay, visibleItems.length]);
 
