@@ -67,17 +67,21 @@ const Model = () => {
                     visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  <div className="absolute inset-0 gradient-bg rounded-xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
-                  <div className="relative glass-card rounded-xl p-8 h-full hover-lift">
+                  {/* Glow background - intensifies on hover */}
+                  <div className="absolute -inset-1 gradient-bg rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-all duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 gradient-bg rounded-xl blur-lg opacity-15 group-hover:opacity-30 transition-opacity duration-300" />
+                  
+                  {/* Card content */}
+                  <div className="relative glass-card rounded-xl p-8 h-full transition-all duration-300 group-hover:-translate-y-3 group-hover:shadow-[0_20px_50px_-12px_hsl(var(--primary)/0.25)]">
                     <div className="flex items-start space-x-4">
-                      <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center shadow-lg flex-shrink-0">
+                      <div className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center shadow-lg flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                         <Icon className="h-7 w-7 text-primary-foreground" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-display font-semibold mb-2 group-hover:text-primary transition-colors">
+                        <h3 className="text-xl font-display font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
                           {t(`model.${item.key}.title`)}
                         </h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
                           {t(`model.${item.key}.description`)}
                         </p>
                       </div>
