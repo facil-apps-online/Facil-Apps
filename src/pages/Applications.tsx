@@ -17,7 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
-import SEOHead from '@/components/SEOHead';
+import SEOHead, { generateSoftwareServiceSchema } from '@/components/SEOHead';
 
 import logoGlamtica from '@/assets/logo-glamtica.png';
 import logoTattoosuite from '@/assets/logo-tattoosuite.png';
@@ -160,6 +160,7 @@ const Applications = () => {
           ? "Ecosistema de apps SaaS: Glamtica, TattooSuite y más soluciones empresariales."
           : "SaaS app ecosystem: Glamtica, TattooSuite and more business solutions."}
         path="/aplicaciones"
+        schema={generateSoftwareServiceSchema()}
       />
       {/* Hero */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
 import { useStaggeredAnimation } from '@/hooks/useScrollAnimation';
-import SEOHead from '@/components/SEOHead';
+import SEOHead, { organizationSchema } from '@/components/SEOHead';
 const ecosystemItems = [
   {
     key: 'erp',
@@ -33,9 +33,10 @@ const Index = () => {
       <SEOHead
         title={language === 'es' ? "Facil Apps Online | Software SaaS" : "Facil Apps Online | SaaS Software"}
         description={language === 'es' 
-          ? "Software SaaS para empresas. Plataformas diseñadas para escalar negocios en Latinoamérica."
-          : "SaaS software for businesses. Platforms designed to scale companies in Latin America."}
+          ? "Creamos software que impulsa negocios. Plataformas SaaS diseñadas para escalar empresas en Latinoamérica."
+          : "We create software that drives businesses. SaaS platforms designed to scale companies in Latin America."}
         path="/"
+        schema={organizationSchema}
       />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
