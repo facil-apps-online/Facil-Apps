@@ -79,7 +79,41 @@ const generateSoftwareServiceSchema = () => ({
   ]
 });
 
-const SEOHead = ({ 
+// Schema para LocalBusiness (página de contacto)
+const generateLocalBusinessSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Facil Apps Online",
+  "image": `${BASE_URL}/og-social.png`,
+  "url": BASE_URL,
+  "telephone": "+573117208085",
+  "email": "contacto@facil-apps.online",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Carrera 17 # 63A-26",
+    "addressLocality": "Bogotá",
+    "addressRegion": "Bogotá D.C.",
+    "postalCode": "111321",
+    "addressCountry": "CO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 4.6514685,
+    "longitude": -74.0673773
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  ],
+  "priceRange": "$$",
+  "sameAs": []
+});
+
+const SEOHead = ({
   title, 
   description, 
   path = '', 
@@ -126,4 +160,4 @@ const SEOHead = ({
   );
 };
 
-export { SEOHead as default, organizationSchema, generateWebPageSchema, generateSoftwareServiceSchema };
+export { SEOHead as default, organizationSchema, generateWebPageSchema, generateSoftwareServiceSchema, generateLocalBusinessSchema };
