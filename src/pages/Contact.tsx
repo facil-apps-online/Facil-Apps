@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/layout/Layout';
-import SEOHead from '@/components/SEOHead';
+import SEOHead, { generateLocalBusinessSchema } from '@/components/SEOHead';
 
 const PHONE_NUMBER = '+573117208085';
 const ADDRESS = 'Carrera 17 # 63A-26, Bogotá';
@@ -57,6 +57,7 @@ const Contact = () => {
           ? "Contáctanos para conocer nuestras soluciones SaaS. Bogotá, Colombia."
           : "Contact us to learn about our SaaS solutions. Bogotá, Colombia."}
         path="/contacto"
+        schema={generateLocalBusinessSchema()}
       />
       {/* Hero */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
