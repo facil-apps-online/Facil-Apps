@@ -74,6 +74,14 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link
+                  to="/faq"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {t('footer.faq')}
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/terminos"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
