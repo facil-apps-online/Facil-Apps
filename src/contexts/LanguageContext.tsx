@@ -15,6 +15,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.about': 'Nosotros',
     'nav.apps': 'Aplicaciones',
     'nav.model': 'Modelo',
+    'nav.faq': 'FAQ',
     'nav.contact': 'Contacto',
     'nav.admin': 'Portal Admin',
     
@@ -131,6 +132,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.about': 'About Us',
     'nav.apps': 'Applications',
     'nav.model': 'Model',
+    'nav.faq': 'FAQ',
     'nav.contact': 'Contact',
     'nav.admin': 'Admin Portal',
     

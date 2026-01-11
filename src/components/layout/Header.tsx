@@ -28,6 +28,7 @@ const Header = () => {
     { href: '/nosotros', label: t('nav.about') },
     { href: '/aplicaciones', label: t('nav.apps') },
     { href: '/modelo', label: t('nav.model') },
+    { href: '/faq', label: t('nav.faq') },
     { href: '/contacto', label: t('nav.contact') },
   ];
 
