@@ -11,6 +11,8 @@ import {
   FileText, 
   MessageCircle, 
   ClipboardCheck,
+  Facebook,
+  Instagram,
   LucideIcon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,6 +26,11 @@ import logoTattoosuite from '@/assets/logo-tattoosuite.png';
 
 type AppStatus = 'production' | 'development' | 'planning';
 
+interface SocialLinks {
+  facebook?: string;
+  instagram?: string;
+}
+
 interface AppItem {
   name: string;
   description: {
@@ -34,6 +41,7 @@ interface AppItem {
   url?: string;
   icon?: LucideIcon;
   logo?: string;
+  social?: SocialLinks;
 }
 
 const applications: AppItem[] = [
@@ -46,6 +54,10 @@ const applications: AppItem[] = [
     status: 'production',
     url: 'https://glamtica.app',
     logo: logoGlamtica,
+    social: {
+      facebook: 'https://facebook.com/glamtica',
+      instagram: 'https://www.instagram.com/glamtica.app/',
+    },
   },
   {
     name: 'TattooSuite',
@@ -56,6 +68,10 @@ const applications: AppItem[] = [
     status: 'production',
     url: 'https://tattoosuite.app',
     logo: logoTattoosuite,
+    social: {
+      facebook: 'https://facebook.com/tattoosuite',
+      instagram: 'https://www.instagram.com/tattoosuite.app/',
+    },
   },
   {
     name: 'Autopartia',
@@ -259,9 +275,40 @@ const Applications = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="text-muted-foreground text-sm flex-grow mb-6">
+                  <p className="text-muted-foreground text-sm flex-grow mb-4">
                     {app.description[language]}
                   </p>
+                  
+                  {/* Social Links */}
+                  {app.social && (
+                    <div className="flex items-center gap-2 mb-4">
+                      {app.social.facebook && (
+                        <a
+                          href={app.social.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+                          aria-label={`Facebook de ${app.name}`}
+                        >
+                          <Facebook className="h-4 w-4" />
+                        </a>
+                      )}
+                      {app.social.instagram && (
+                        <a
+                          href={app.social.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+                          aria-label={`Instagram de ${app.name}`}
+                        >
+                          <Instagram className="h-4 w-4" />
+                        </a>
+                      )}
+                    </div>
+                  )}
+                  
                   <div className="mt-auto">
                     {isProduction ? (
                       <div className="flex items-center justify-center gap-2 text-sm text-primary font-medium group-hover:gap-3 transition-all">
