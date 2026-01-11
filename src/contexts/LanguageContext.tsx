@@ -118,6 +118,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.legal': 'Legal',
     'footer.terms': 'Términos de Servicio',
     'footer.privacy': 'Política de Privacidad',
+    'footer.faq': 'Preguntas Frecuentes',
     'footer.rights': 'Todos los derechos reservados.',
     
     // Legal pages
@@ -233,6 +234,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.legal': 'Legal',
     'footer.terms': 'Terms of Service',
     'footer.privacy': 'Privacy Policy',
+    'footer.faq': 'FAQ',
     'footer.rights': 'All rights reserved.',
     
     // Legal pages

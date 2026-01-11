@@ -4,11 +4,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Applications from "./pages/Applications";
 import Model from "./pages/Model";
 import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
@@ -28,10 +30,12 @@ const App = () => (
             <Route path="/aplicaciones" element={<Applications />} />
             <Route path="/modelo" element={<Model />} />
             <Route path="/contacto" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/terminos" element={<Terms />} />
             <Route path="/privacidad" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppButton />
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
