@@ -100,7 +100,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Team
     'aboutPage.team.title': 'Nuestro Equipo',
     'aboutPage.team.subtitle': 'Profesionales apasionados por la tecnología y la innovación.',
-    'aboutPage.team.ceo.name': 'Carlos Mendoza',
+    'aboutPage.team.ceo.name': 'José V. Zapata',
     'aboutPage.team.ceo.role': 'CEO & Fundador',
     'aboutPage.team.ceo.bio': 'Más de 15 años liderando proyectos de transformación digital.',
     'aboutPage.team.cto.name': 'Ana García',
@@ -217,7 +217,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Team
     'aboutPage.team.title': 'Our Team',
     'aboutPage.team.subtitle': 'Professionals passionate about technology and innovation.',
-    'aboutPage.team.ceo.name': 'Carlos Mendoza',
+    'aboutPage.team.ceo.name': 'José V. Zapata',
     'aboutPage.team.ceo.role': 'CEO & Founder',
     'aboutPage.team.ceo.bio': 'Over 15 years leading digital transformation projects.',
     'aboutPage.team.cto.name': 'Ana García',

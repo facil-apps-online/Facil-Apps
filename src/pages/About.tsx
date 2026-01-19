@@ -13,7 +13,7 @@ const values = [
 ];
 
 const teamMembers = [
-  { key: 'ceo', initials: 'CM' },
+  { key: 'ceo', initials: 'JZ' },
   { key: 'cto', initials: 'AG' },
   { key: 'lead', initials: 'MT' },
   { key: 'design', initials: 'LR' },
